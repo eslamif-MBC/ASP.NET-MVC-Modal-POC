@@ -14,8 +14,20 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        alert("Hello World");
+        $("#ShowModalButton").click(function () {
+            var name = $("#name").val();
+            $("#modal_body").html(name);
+            $("#IceCreamModal").modal('show');
+        });
+
+        $("#btnHideModal").click(function () {
+            $("#loginModal").modal('hide');
+        });  
     });
+
+    function openModal() {
+        alert("Opening Modal...");
+    }
 </script>
 
 <h1 class="title">ASP.NET MVC Modal POC</h1>
@@ -31,13 +43,16 @@
     </div>
 
     <div class="col-sm-6" style="margin-top: 1.5em;">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <form>
+            <label for="name">Name:</label>
+            <input id="name" type="text" name="name" required>
 
-        <input type="button" value="Open Modal">
+            <input id="ShowModalButton" type="button" value="Open Modal" onclick="openModal()">
+        </form>
     </div>
 </div>
 
-<div class="modal" id="IceCreamModal">
+<div class="modal-dialog modal-dialog-centered">
     <h1>This is my modal</h1>
+    <p>Your name is: <span id="modalName"></span></p>
 </div>

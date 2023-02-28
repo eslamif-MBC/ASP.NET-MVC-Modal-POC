@@ -12,5 +12,10 @@ namespace MvcModalPOC.Controllers
         {
             return View();
         }
+
+        public ActionResult MvcWay()
+        {
+            return View();
+        }
     }
 }

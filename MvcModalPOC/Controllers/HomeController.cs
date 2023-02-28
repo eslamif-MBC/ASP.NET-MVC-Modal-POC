@@ -8,7 +8,7 @@ namespace MvcModalPOC.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult JavaScriptWay()
         {
             return View();
         }

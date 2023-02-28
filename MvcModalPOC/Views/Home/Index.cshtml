@@ -5,7 +5,6 @@
 <style>
     .title {
         text-align: center;
-        margin-bottom: 1em;
     }
 </style>
 
@@ -14,16 +13,47 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        const myModal = document.getElementById('ModalId')
+        const myModalInput = document.getElementById('ModalInputId')
 
+        var nameInput = "";
+
+        //When the modal shows
+        myModal.addEventListener('shown.bs.modal', () => {
+            //Set the name value
+            nameInput = $("#name").val();
+
+            //Focus the input field
+            $("#ModalLabelId").html(nameInput);
+            myModalInput.focus()
+        })
+
+        //On modal save button click event
+        $("#ModalSaveButton").click(function () {
+            //Get the input value
+            var iceCreamInput = $("#ModalInputId").val();
+
+            //Hide modal
+            var modal = bootstrap.Modal.getInstance(myModal)
+            modal.hide();
+
+            //Handle modal closing
+            modalClosed(iceCreamInput);
+        });
+
+        function modalClosed(iceCreamName) {
+            alert(nameInput + " likes " + iceCreamName);
+        }
     });
 </script>
 
 <h1 class="title">ASP.NET MVC Modal POC</h1>
+<h2 class="title" style="margin-bottom: 1.5em;">The JavaScript Way</h2>
 
 <div class="row">
     @* Instructions *@
     <div class="col-sm-6">
-        <h2>Instructions</h2>
+        <h3>Instructions</h3>
 
         <p>Enter your name and click the submit button.</p>
         <p>A modal will open, showing your name. </p>
@@ -49,16 +79,16 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="ModalLabelId">Modal title</h1>
+                <h1 id="ModalLabelId" class="modal-title fs-5">Modal title</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
-                ...
+                <input id="ModalInputId" type="text" placeholder="Enter your first name" class="form-control" style="display: inline;">
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-success">Save</button>
+                <button id="ModalSaveButton" type="button" class="btn btn-success">Save</button>
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>

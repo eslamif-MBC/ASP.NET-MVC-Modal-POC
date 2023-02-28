@@ -13,38 +13,27 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        const myModal = document.getElementById('ModalId')
-        const myModalInput = document.getElementById('ModalInputId')
 
-        var nameInput = "";
-
-        //When the modal shows
-        myModal.addEventListener('shown.bs.modal', () => {
-            //Set the name value
-            nameInput = $("#name").val();
-
-            //Focus the input field
-            $("#ModalLabelId").html(nameInput);
-            myModalInput.focus()
-        })
-
-        //On modal save button click event
-        $("#ModalSaveButton").click(function () {
-            //Get the input value
-            var iceCreamInput = $("#ModalInputId").val();
-
-            //Hide modal
-            var modal = bootstrap.Modal.getInstance(myModal)
-            modal.hide();
-
-            //Handle modal closing
-            modalClosed(iceCreamInput);
-        });
-
-        function modalClosed(iceCreamName) {
-            alert(nameInput + " likes " + iceCreamName);
-        }
     });
+
+    function iceCreamViewAction(firstName) {
+        $.get("@Url.Action("IceCreamPartialView", "Home")?firstName=" + firstName),
+            function (data) {
+                $('#ModalId').html(data);
+                }
+
+        @*$.get("@Url.Action("IceCreamPartialView", "Home")"),
+            function (data) {
+                $('#ModalId').html(data);
+        }*@
+
+    $('#ModalId').modal('show');
+    }
+
+    $('#ModalId').on('hidden.bs.modal'), function (e) {
+        $('.modal-body').html("");
+        alert("hidden");
+    }
 </script>
 
 <h1 class="title">ASP.NET MVC Modal POC</h1>
@@ -71,9 +60,7 @@
             <input id="name" type="text" name="name" placeholder="Enter your first name" class="form-control" style="display: inline;">
 
             <!-- Open modal button -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalId">
-                Open Modal
-            </button>
+            <input id="OpenModelButtonId" class="btn btn-primary" type="button" value="Open Modal" onclick="iceCreamViewAction('Frank')" />
         </form>
     </div>
 </div>
@@ -89,18 +76,13 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 id="ModalLabelId" class="modal-title fs-5">Modal title</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div class="modal-body">
-                <input id="ModalInputId" type="text" placeholder="Enter your first name" class="form-control" style="display: inline;">
-            </div>
-
-            <div class="modal-footer">
-                <button id="ModalSaveButton" type="button" class="btn btn-success">Save</button>
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-            </div>
         </div>
     </div>
 </div>
+
+@*
+    https://www.youtube.com/watch?v=G1s_zUs0o3c
+*@

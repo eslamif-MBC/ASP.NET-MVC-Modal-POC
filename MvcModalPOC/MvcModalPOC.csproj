@@ -198,6 +198,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\JavaScriptWay.cshtml" />
     <Content Include="Views\Home\MvcWay.cshtml" />
+    <Content Include="Views\Home\IceCreamPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

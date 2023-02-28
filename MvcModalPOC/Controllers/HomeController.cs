@@ -17,5 +17,11 @@ namespace MvcModalPOC.Controllers
         {
             return View();
         }
+
+        public ActionResult IceCreamPartialView(string firstName)
+        {
+            var hi = "hi";
+            return PartialView("IceCreamPartialView");
+        }
     }
 }

@@ -14,25 +14,14 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#ShowModalButton").click(function () {
-            var name = $("#name").val();
-            $("#modal_body").html(name);
-            $("#IceCreamModal").modal('show');
-        });
 
-        $("#btnHideModal").click(function () {
-            $("#loginModal").modal('hide');
-        });  
     });
-
-    function openModal() {
-        alert("Opening Modal...");
-    }
 </script>
 
 <h1 class="title">ASP.NET MVC Modal POC</h1>
 
 <div class="row">
+    @* Instructions *@
     <div class="col-sm-6">
         <h2>Instructions</h2>
 
@@ -42,17 +31,36 @@
         <p>The parent page will show your favorite ice cream as well as your name.</p>
     </div>
 
+    @* Input and Button *@
     <div class="col-sm-6" style="margin-top: 1.5em;">
         <form>
-            <label for="name">Name:</label>
-            <input id="name" type="text" name="name" required>
+            <input id="name" type="text" name="name" placeholder="Enter your first name" class="form-control" style="display: inline;">
 
-            <input id="ShowModalButton" type="button" value="Open Modal" onclick="openModal()">
+            <!-- Open modal button -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalId">
+                Open Modal
+            </button>
         </form>
     </div>
 </div>
 
-<div class="modal-dialog modal-dialog-centered">
-    <h1>This is my modal</h1>
-    <p>Your name is: <span id="modalName"></span></p>
+<!-- Modal -->
+<div class="modal fade" id="ModalId" tabindex="-1" aria-labelledby="ModalLabelId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ModalLabelId">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                ...
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>

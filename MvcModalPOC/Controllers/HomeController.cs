@@ -1,8 +1,10 @@
-﻿using System;
+﻿using MvcModalPOC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcModalPOC.Models;
 
 namespace MvcModalPOC.Controllers
 {
@@ -15,10 +17,11 @@ namespace MvcModalPOC.Controllers
 
         public ActionResult MvcWay()
         {
-            return View();
+            var vm = new IceCreamVM("3", "Frank", "Baskin Robins", "Chocolatee");
+            return View(vm);
         }
 
-        public ActionResult IceCreamPartialView(string firstName)
+        public ActionResult IceCreamPartialView(string id)
         {
             var hi = "hi";
             return PartialView("IceCreamPartialView");

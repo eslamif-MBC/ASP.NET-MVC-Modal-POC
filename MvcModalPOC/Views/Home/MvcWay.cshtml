@@ -1,4 +1,8 @@
-﻿@{
+﻿@model MvcModalPOC.Models.IceCreamVM
+
+@using MvcModalPOC.Models;
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -16,24 +20,34 @@
 
     });
 
-    function iceCreamViewAction(firstName) {
-        $.get("@Url.Action("IceCreamPartialView", "Home")?firstName=" + firstName),
+    function iceCreamViewAction() {
+        //var vmString = JSON.stringify(vmJson);
+        //var vm = JSON.parse(vmString);
+        //alert("hi");
+
+        $.get("@Url.Action("IceCreamPartialView", "Home")?id=" + @Model.ID),
             function (data) {
                 $('#ModalId').html(data);
-                }
+            }
+
+    }
+        @*$.get("@Url.Action("IceCreamPartialView", "Home")?vm=" + vm),
+            function (data) {
+                $('#ModalId').html(data);
+                }*@
 
         @*$.get("@Url.Action("IceCreamPartialView", "Home")"),
             function (data) {
                 $('#ModalId').html(data);
         }*@
 
-    $('#ModalId').modal('show');
-    }
+    //$('#ModalId').modal('show');
+    //}
 
-    $('#ModalId').on('hidden.bs.modal'), function (e) {
-        $('.modal-body').html("");
-        alert("hidden");
-    }
+    //$('#ModalId').on('hidden.bs.modal'), function (e) {
+    //    $('.modal-body').html("");
+    //    alert("hidden");
+    //}
 </script>
 
 <h1 class="title">ASP.NET MVC Modal POC</h1>
@@ -60,7 +74,9 @@
             <input id="name" type="text" name="name" placeholder="Enter your first name" class="form-control" style="display: inline;">
 
             <!-- Open modal button -->
-            <input id="OpenModelButtonId" class="btn btn-primary" type="button" value="Open Modal" onclick="iceCreamViewAction('Frank')" />
+            @{
+                <input id="OpenModelButtonId" class="btn btn-primary" type="button" value="Open Modal" onclick="iceCreamViewAction()" />
+            }
         </form>
     </div>
 </div>

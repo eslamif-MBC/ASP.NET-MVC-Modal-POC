@@ -16,18 +16,7 @@
 @Scripts.Render("~/bundles/jquery")
 
 <script type="text/javascript">
-    $(document).ready(function () {
-
-    });
-
     function iceCreamViewAction() {
-        @*$.get("@Url.Action("IceCreamPartialView", "Home")?id=" + @Model.ID),
-            function (data) {
-                alert("success");
-                $('.modal-body').html(data);
-                $('#ModalId').modal('show');
-            }*@
-
         $.ajax({
             url: '/Home/IceCreamPartialView',
             type: 'GET',
@@ -39,23 +28,6 @@
             }
         });
     }
-        @*$.get("@Url.Action("IceCreamPartialView", "Home")?vm=" + vm),
-            function (data) {
-                $('#ModalId').html(data);
-                }*@
-
-        @*$.get("@Url.Action("IceCreamPartialView", "Home")"),
-            function (data) {
-                $('#ModalId').html(data);
-        }*@
-
-    //$('#ModalId').modal('show');
-    //}
-
-    //$('#ModalId').on('hidden.bs.modal'), function (e) {
-    //    $('.modal-body').html("");
-    //    alert("hidden");
-    //}
 </script>
 
 <h1 class="title">ASP.NET MVC Modal POC</h1>
@@ -78,14 +50,12 @@
 
     @* Input and Button *@
     <div class="col-sm-6" style="margin-top: 1.5em;">
-        <form>
-            <input id="name" type="text" name="name" placeholder="Enter your first name" class="form-control" style="display: inline;">
+        <!-- Open modal button -->
+        <input id="name" type="text" name="name" placeholder="Enter your first name" class="form-control" style="display: inline;">
 
-            <!-- Open modal button -->
-            @{
-                <input id="OpenModelButtonId" class="btn btn-primary" type="button" value="Open Modal" onclick="iceCreamViewAction()" />
-            }
-        </form>
+        @{
+            <input id="OpenModelButtonId" class="btn btn-primary" type="button" value="Open Modal" onclick="iceCreamViewAction()" />
+        }
     </div>
 </div>
 
@@ -109,7 +79,3 @@
         </div>
     </div>
 </div>
-
-@*
-    https://www.youtube.com/watch?v=G1s_zUs0o3c
-*@

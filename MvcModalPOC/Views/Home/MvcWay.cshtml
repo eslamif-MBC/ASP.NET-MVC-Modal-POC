@@ -21,15 +21,23 @@
     });
 
     function iceCreamViewAction() {
-        //var vmString = JSON.stringify(vmJson);
-        //var vm = JSON.parse(vmString);
-        //alert("hi");
-
-        $.get("@Url.Action("IceCreamPartialView", "Home")?id=" + @Model.ID),
+        @*$.get("@Url.Action("IceCreamPartialView", "Home")?id=" + @Model.ID),
             function (data) {
-                $('#ModalId').html(data);
-            }
+                alert("success");
+                $('.modal-body').html(data);
+                $('#ModalId').modal('show');
+            }*@
 
+        $.ajax({
+            url: '/Home/IceCreamPartialView',
+            type: 'GET',
+            async: false,
+            data: { id: @Model.ID },
+            success: function (result) {
+                $("#ModalBodyContainerID").html(result);
+                $('#ModalId').modal('show');
+            }
+        });
     }
         @*$.get("@Url.Action("IceCreamPartialView", "Home")?vm=" + vm),
             function (data) {
@@ -95,6 +103,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
+            <div id="ModalBodyContainerID">
+
+            </div>
         </div>
     </div>
 </div>

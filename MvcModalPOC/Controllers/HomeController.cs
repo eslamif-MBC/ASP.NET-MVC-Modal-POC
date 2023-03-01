@@ -17,14 +17,21 @@ namespace MvcModalPOC.Controllers
 
         public ActionResult MvcWay()
         {
-            var vm = new IceCreamVM("3", "Frank", "Baskin Robins", "Chocolatee");
+            var vm = new IceCreamVM();
+            vm.ID = 3;
+
             return View(vm);
         }
 
-        public ActionResult IceCreamPartialView(string id)
+        public ActionResult IceCreamPartialView(int id)
         {
-            var hi = "hi";
-            return PartialView("IceCreamPartialView");
+            var vm = new IceCreamVM();
+            vm.ID = id;
+            vm.FirstName = "Frank";
+            vm.Brand = "Baskin Robbins";
+            vm.Flavor = "Chocolate";
+
+            return PartialView("IceCreamPartialView", vm);
         }
     }
 }

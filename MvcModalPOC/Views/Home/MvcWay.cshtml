@@ -17,11 +17,13 @@
 
 <script type="text/javascript">
     function iceCreamViewAction() {
+        nameInput = $("#name").val();
+
         $.ajax({
             url: '/Home/IceCreamPartialView',
             type: 'GET',
             async: false,
-            data: { id: @Model.ID },
+            data: { id: @Model.ID, firstName: nameInput },
             success: function (result) {
                 $("#ModalBodyContainerID").html(result);
                 $('#ModalId').modal('show');
@@ -50,11 +52,9 @@
 
     @* Input and Button *@
     <div class="col-sm-6" style="margin-top: 1.5em;">
-        <!-- Open modal button -->
-        <input id="name" type="text" name="name" placeholder="Enter your first name" class="form-control" style="display: inline;">
-
         @{
-            <input id="OpenModelButtonId" class="btn btn-primary" type="button" value="Open Modal" onclick="iceCreamViewAction()" />
+            <input id="name" type="text" placeholder="Enter your first name" class="form-control" style="display: inline;">
+            <input id="SubmitButtonID" type="button" value="Open Modal" onclick="iceCreamViewAction()" class="btn btn-primary"  />
         }
     </div>
 </div>

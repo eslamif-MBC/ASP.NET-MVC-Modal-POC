@@ -23,11 +23,11 @@ namespace MvcModalPOC.Controllers
             return View(vm);
         }
 
-        public ActionResult IceCreamPartialView(int id)
+        public ActionResult IceCreamPartialView(int id, string firstName)
         {
             var vm = new IceCreamVM();
             vm.ID = id;
-            vm.FirstName = "Frank";
+            vm.FirstName = firstName;
             vm.Brand = "Baskin Robbins";
             vm.Flavor = "Chocolate";
 
